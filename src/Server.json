@@ -1,0 +1,13 @@
+{
+    "users": [
+      { "id": 1, "username": "user1", "password": "password1" },
+      { "id": 2, "username": "admin", "password": "adminpass", "role": "admin" }
+    ],
+    "menu": [
+      { "id": 1, "name": "Pizza", "price": 10 },
+      { "id": 2, "name": "Burger", "price": 5 }
+    ],
+    "orders": [],
+    "bills": []
+  }
+  
