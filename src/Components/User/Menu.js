@@ -24,7 +24,7 @@ function Menu({ onAddToCart }) {
 
   const handleAddToCart = (item) => {
     console.log('item',item)
-    const quantity = quantities[item.item_id] || 1;
+    const quantity = quantities[item.itemId] || 1;
     console.log('quantity',quantity)
     onAddToCart({ ...item, quantity });
     setSuccessMessage(`Item "${item.name}" added successfully!`);
@@ -32,6 +32,7 @@ function Menu({ onAddToCart }) {
   };
 
   const handleIncreaseQuantity = (itemId) => {
+    console.log("itemId", itemId)
     setQuantities((prevQuantities) => ({
       ...prevQuantities,
       [itemId]: (prevQuantities[itemId] || 1) + 1,
@@ -57,7 +58,7 @@ function Menu({ onAddToCart }) {
       </button>
       <div className="row">
         {menuItems.map((item) => (
-          <div key={item.item_id} className="col-md-4 mb-4">
+          <div key={item.itemId} className="col-md-4 mb-4">
             <div className="card">
               <div className="card-body">
                 <h5 className="card-title">{item.name}</h5>
@@ -67,14 +68,14 @@ function Menu({ onAddToCart }) {
                   <div className="input-group">
                     <button
                       className="btn btn-secondary btn-sm"
-                      onClick={() => handleDecreaseQuantity(item.item_id)}
+                      onClick={() => handleDecreaseQuantity(item.itemId)}
                     >
                       -
                     </button>
-                    <span className="input-group-text">{quantities[item.item_id] || 1}</span>
+                    <span className="input-group-text">{quantities[item.itemId] || 1}</span>
                     <button
                       className="btn btn-secondary btn-sm"
-                      onClick={() => handleIncreaseQuantity(item.item_id)}
+                      onClick={() => handleIncreaseQuantity(item.itemId)}
                     >
                       +
                     </button>
