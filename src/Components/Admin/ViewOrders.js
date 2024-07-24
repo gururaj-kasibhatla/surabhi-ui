@@ -8,7 +8,7 @@ function ViewOrders() {
 
   useEffect(() => {
     async function fetchOrders() {
-      const response = await axios.get('http://localhost:3001/orders');
+      const response = await axios.get('http://localhost:8080/orders');
       setOrders(response.data);
     }
     fetchOrders();

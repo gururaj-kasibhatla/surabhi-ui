@@ -8,14 +8,14 @@ function ManageMenu() {
 
   useEffect(() => {
     async function fetchMenu() {
-      const response = await axios.get('http://localhost:3001/menu');
+      const response = await axios.get('http://localhost:8080/admin/menuItems');
       setMenuItems(response.data);
     }
     fetchMenu();
   }, []);
 
   const deleteMenuItem = async (id) => {
-    await axios.delete(`http://localhost:3001/menu/${id}`);
+    await axios.delete(`http://localhost:8080/admin/menuItems/${id}`);
     setMenuItems(menuItems.filter(item => item.id !== id));
   };
 

@@ -1,4 +1,4 @@
-// src/components/Auth/Login.js
+// src/Components/Auth/Login.js
 
 import React, { useState } from 'react';
 import axios from 'axios';
@@ -12,7 +12,7 @@ function Login({ onLogin }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.get('http://localhost:3001/users');
+      const response = await axios.get('http://localhost:8080/users');
       const users = response.data;
       const user = users.find(u => u.username === username && u.password === password);
       if (user) {
@@ -27,30 +27,54 @@ function Login({ onLogin }) {
     }
   };
 
+  const handleRegister = () => {
+    navigate('/register');
+  };
+
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Username: </label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
+    <div className="container mt-5">
+      <div className="row justify-content-center">
+        <div className="col-md-6">
+          <div className="card">
+            <div className="card-body">
+              <h2 className="card-title text-center">Login</h2>
+              <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                  <label>Username:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Password:</label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                </div>
+                <br/>
+                <button type="submit" className="btn btn-primary btn-block">
+                  Login
+                </button>
+              </form>
+              <hr />
+              <button
+                className="btn btn-link"
+                onClick={handleRegister}
+              >
+                Register
+              </button>
+            </div>
+          </div>
         </div>
-        <div>
-          <label>Password: </label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Login</button>
-      </form>
+      </div>
     </div>
   );
 }

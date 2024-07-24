@@ -1,13 +1,41 @@
 {
-    "users": [
-      { "id": 1, "username": "user1", "password": "password1" },
-      { "id": 2, "username": "admin", "password": "adminpass", "role": "admin" }
-    ],
-    "menu": [
-      { "id": 1, "name": "Pizza", "price": 10 },
-      { "id": 2, "name": "Burger", "price": 5 }
-    ],
-    "orders": [],
-    "bills": []
-  }
-  
+  "users": [
+    {
+      "user_id": 1,
+      "username": "user1",
+      "password": "password1",
+      "id": "ee87"
+    },
+    {
+      "user_id": 2,
+      "username": "admin",
+      "password": "adminpass",
+      "role": "admin",
+      "id": "0d1a"
+    },
+    {
+      "id": "79d1",
+      "username": "user3",
+      "password": "password3",
+      "role": "user"
+    }
+  ],
+  "menuItems": [
+    {
+      "item_id": 1,
+      "name": "Pizza",
+      "description": "A delicious cheese pizza with a crispy crust and tangy tomato sauce.",
+      "price": 10,
+      "id": "95f8"
+    },
+    {
+      "item_id": 2,
+      "name": "Burger",
+      "description": "A juicy beef burger with fresh lettuce, tomato, and a savory sauce.",
+      "price": 5,
+      "id": "7f4f"
+    }
+  ],
+  "orders": [],
+  "bills": []
+}
