@@ -11,6 +11,7 @@ import Login from './Components/Auth/Login';
 import Signup from './Components/User/Signup';
 import NavigationBar from './Components/Navigation/NavigationBar';
 import Footer from './Components/Navigation/Footer';
+import ManageUsers from './Components/Admin/ManageUsers';
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -44,6 +45,7 @@ function App() {
           <Route path="/cart" element={user ? <Cart cartItems={cartItems} onCheckout={handleCheckout} /> : <Login onLogin={setUser} />} />
           <Route path="/checkout" element={user ? <Checkout total={total} /> : <Login onLogin={setUser} />} />
           <Route path="/admin/manage-menu" element={user?.role === 'ADMIN' ? <ManageMenu /> : <Login onLogin={setUser} />} />
+          <Route path="/admin/manage-users" element={user?.role === 'ADMIN' ? <ManageUsers /> : <Login onLogin={setUser} />} />
           <Route path="/admin/view-orders" element={user?.role === 'ADMIN' ? <ViewOrders /> : <Login onLogin={setUser} />} />
           <Route path="/signup" element={<Signup />} />
         </Routes>
