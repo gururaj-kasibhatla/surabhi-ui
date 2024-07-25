@@ -10,6 +10,7 @@ import ViewOrders from './Components/Admin/ViewOrders';
 import Login from './Components/Auth/Login';
 import Signup from './Components/User/Signup';
 import NavigationBar from './Components/Navigation/NavigationBar';
+import Footer from './Components/Navigation/Footer';
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -46,6 +47,7 @@ function App() {
           <Route path="/admin/view-orders" element={user?.role === 'ADMIN' ? <ViewOrders /> : <Login onLogin={setUser} />} />
           <Route path="/signup" element={<Signup />} />
         </Routes>
+        <Footer />
       </div>
     </Router>
   );

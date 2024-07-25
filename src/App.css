@@ -9,8 +9,7 @@ body {
   background-repeat: no-repeat;
   height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column; /* Use column direction to position footer at the bottom */
   background-color: rgba(255, 255, 255, 0.7); /* Add a white overlay */
   background-blend-mode: lighten; /* Makes the image lighter */
 }
@@ -20,16 +19,13 @@ body {
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  width: 100%; 
-  max-width: 4000px; 
-  margin: 0 auto; 
+  width: 100%;
+  margin: 0 20px; /* Added margin for some horizontal spacing */
+  flex: 1; /* Allow container to grow and push footer down */
+  display: flex;
+  flex-direction: column;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.footer {
+  margin-top: auto; /* Push footer to the bottom */
 }

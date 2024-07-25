@@ -1,0 +1,12 @@
+/* src/Components/Footer.css */
+
+.footer {
+  background-color: #052560;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  width: 100%;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px; /* Add margin to move the footer down */
+}
