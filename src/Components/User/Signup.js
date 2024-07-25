@@ -8,7 +8,7 @@ function Signup() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [role, setRole] = useState('user'); // Default role
+  const [role, setRole] = useState('USER'); // Default role
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
@@ -83,8 +83,8 @@ function Signup() {
                 id="roleUser"
                 name="role"
                 className="form-check-input"
-                value="user"
-                checked={role === 'user'}
+                value="USER"
+                checked={role === 'USER'}
                 onChange={(e) => setRole(e.target.value)}
               />
               <label htmlFor="roleUser" className="form-check-label">
@@ -97,8 +97,8 @@ function Signup() {
                 id="roleAdmin"
                 name="role"
                 className="form-check-input"
-                value="admin"
-                checked={role === 'admin'}
+                value="ADMIN"
+                checked={role === 'ADMIN'}
                 onChange={(e) => setRole(e.target.value)}
               />
               <label htmlFor="roleAdmin" className="form-check-label">
