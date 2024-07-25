@@ -17,7 +17,7 @@ function Login({ onLogin }) {
       const user = users.find(u => u.username === username && u.password === password);
       if (user) {
         onLogin(user);
-        navigate(user.role === 'admin' ? '/admin/manage-menu' : '/');
+        navigate(user.role === 'ADMIN' ? '/admin/manage-menu' : '/');
       } else {
         alert('Invalid credentials');
       }
@@ -28,7 +28,7 @@ function Login({ onLogin }) {
   };
 
   const handleRegister = () => {
-    navigate('/signup');
+    navigate('/register');
   };
 
   return (

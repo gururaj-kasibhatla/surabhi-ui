@@ -42,8 +42,8 @@ function App() {
           <Route path="/login" element={<Login onLogin={setUser} />} />
           <Route path="/cart" element={user ? <Cart cartItems={cartItems} onCheckout={handleCheckout} /> : <Login onLogin={setUser} />} />
           <Route path="/checkout" element={user ? <Checkout total={total} /> : <Login onLogin={setUser} />} />
-          <Route path="/admin/manage-menu" element={user?.role === 'admin' ? <ManageMenu /> : <Login onLogin={setUser} />} />
-          <Route path="/admin/view-orders" element={user?.role === 'admin' ? <ViewOrders /> : <Login onLogin={setUser} />} />
+          <Route path="/admin/manage-menu" element={user?.role === 'ADMIN' ? <ManageMenu /> : <Login onLogin={setUser} />} />
+          <Route path="/admin/view-orders" element={user?.role === 'ADMIN' ? <ViewOrders /> : <Login onLogin={setUser} />} />
           <Route path="/signup" element={<Signup />} />
         </Routes>
       </div>
