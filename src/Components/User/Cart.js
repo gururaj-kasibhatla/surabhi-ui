@@ -1,13 +1,20 @@
 // src/Components/User/Cart.js
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function Cart({ cartItems, onCheckout }) {
+function Cart({ cartItems }) {
+  const navigate = useNavigate();
+
   const calculateTotal = (item) => {
     return item.price * item.quantity;
   };
 
   const grandTotal = cartItems.reduce((sum, item) => sum + calculateTotal(item), 0);
+
+  const handleCheckout = () => {
+    navigate('/checkout');
+  };
 
   return (
     <div>
@@ -42,7 +49,7 @@ function Cart({ cartItems, onCheckout }) {
               </tr>
             </tfoot>
           </table>
-          <button className="btn btn-primary" onClick={onCheckout}>
+          <button className="btn btn-primary" onClick={handleCheckout}>
             Checkout
           </button>
         </div>

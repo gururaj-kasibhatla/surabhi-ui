@@ -8,6 +8,7 @@ function Signup() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [role, setRole] = useState('user'); // Default role
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ function Signup() {
       await axios.post('http://localhost:8080/users', {
         username,
         password,
-        role: 'user'  // Default role for new users
+        role,
       });
       setSuccessMessage('User registered successfully');
       setTimeout(() => navigate('/login'), 3000); // Redirect to login after 3 seconds
@@ -72,6 +73,39 @@ function Signup() {
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
+        </div>
+        <div className="form-group mb-3">
+          <label>Role:</label>
+          <div>
+            <div className="form-check form-check-inline">
+              <input
+                type="radio"
+                id="roleUser"
+                name="role"
+                className="form-check-input"
+                value="user"
+                checked={role === 'user'}
+                onChange={(e) => setRole(e.target.value)}
+              />
+              <label htmlFor="roleUser" className="form-check-label">
+                User
+              </label>
+            </div>
+            <div className="form-check form-check-inline">
+              <input
+                type="radio"
+                id="roleAdmin"
+                name="role"
+                className="form-check-input"
+                value="admin"
+                checked={role === 'admin'}
+                onChange={(e) => setRole(e.target.value)}
+              />
+              <label htmlFor="roleAdmin" className="form-check-label">
+                Admin
+              </label>
+            </div>
+          </div>
         </div>
         <button type="submit" className="btn btn-primary">Signup</button>
       </form>
