@@ -1,5 +1,3 @@
-// src/Components/NavigationBar.js
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -31,9 +29,9 @@ const NavigationBar = ({ user, onLogout }) => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-            <button className="nav-link btn btn-link" onClick={() => navigate('/')}>
-                    Home
-                  </button>
+              <button className="nav-link btn btn-link" onClick={() => navigate('/')}>
+                Home
+              </button>
             </li>
             {!user ? (
               <>
@@ -49,11 +47,27 @@ const NavigationBar = ({ user, onLogout }) => {
                 </li>
               </>
             ) : (
-              <li className="nav-item">
-                <button className="nav-link btn btn-link" onClick={onLogout}>
-                  Logout
-                </button>
-              </li>
+              <>
+                {user.role === 'ADMIN' && (
+                  <>
+                    <li className="nav-item">
+                      <button className="nav-link btn btn-link" onClick={() => navigate('/admin/manage-menu')}>
+                        Manage Menu
+                      </button>
+                    </li>
+                    <li className="nav-item">
+                      <button className="nav-link btn btn-link" onClick={() => navigate('/admin/manage-users')}>
+                        Manage Users
+                      </button>
+                    </li>
+                  </>
+                )}
+                <li className="nav-item">
+                  <button className="nav-link btn btn-link" onClick={onLogout}>
+                    Logout
+                  </button>
+                </li>
+              </>
             )}
           </ul>
         </div>
