@@ -28,7 +28,7 @@ function Login({ onLogin }) {
   };
 
   const handleRegister = () => {
-    navigate('/register');
+    navigate('/signup');
   };
 
   return (
