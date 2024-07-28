@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 function Menu({ onAddToCart }) {
   const [menuItems, setMenuItems] = useState([]);
   const [quantities, setQuantities] = useState({});
+  const [addedItems, setAddedItems] = useState({});
   const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
 
@@ -14,7 +15,15 @@ function Menu({ onAddToCart }) {
     async function fetchMenu() {
       try {
         const response = await axios.get('http://localhost:8080/admin/menuItems');
-        setMenuItems(response.data);
+        const items = response.data;
+        setMenuItems(items);
+
+        // Initialize quantities to 0 for each menu item
+        const initialQuantities = {};
+        items.forEach(item => {
+          initialQuantities[item.itemId] = 0;
+        });
+        setQuantities(initialQuantities);
       } catch (error) {
         console.error('Error fetching menu:', error);
       }
@@ -23,26 +32,29 @@ function Menu({ onAddToCart }) {
   }, []);
 
   const handleAddToCart = (item) => {
-    console.log('item',item)
-    const quantity = quantities[item.itemId] || 1;
-    console.log('quantity',quantity)
-    onAddToCart({ ...item, quantity });
-    setSuccessMessage(`Item "${item.name}" added successfully!`);
-    setTimeout(() => setSuccessMessage(''), 3000); // Clear message after 3 seconds
+    const quantity = quantities[item.itemId];
+    if (quantity > 0) {
+      onAddToCart({ ...item, quantity });
+      setSuccessMessage(`Item "${item.name}" added successfully!`);
+      setAddedItems((prevAddedItems) => ({
+        ...prevAddedItems,
+        [item.itemId]: true,
+      }));
+      setTimeout(() => setSuccessMessage(''), 3000); // Clear message after 3 seconds
+    }
   };
 
   const handleIncreaseQuantity = (itemId) => {
-    console.log("itemId", itemId)
     setQuantities((prevQuantities) => ({
       ...prevQuantities,
-      [itemId]: (prevQuantities[itemId] || 1) + 1,
+      [itemId]: prevQuantities[itemId] + 1,
     }));
   };
 
   const handleDecreaseQuantity = (itemId) => {
     setQuantities((prevQuantities) => ({
       ...prevQuantities,
-      [itemId]: Math.max((prevQuantities[itemId] || 1) - 1, 1),
+      [itemId]: Math.max(prevQuantities[itemId] - 1, 0),
     }));
   };
 
@@ -72,7 +84,7 @@ function Menu({ onAddToCart }) {
                     >
                       -
                     </button>
-                    <span className="input-group-text">{quantities[item.itemId] || 1}</span>
+                    <span className="input-group-text">{quantities[item.itemId]}</span>
                     <button
                       className="btn btn-secondary btn-sm"
                       onClick={() => handleIncreaseQuantity(item.itemId)}
@@ -83,8 +95,9 @@ function Menu({ onAddToCart }) {
                   <button
                     className="btn btn-success"
                     onClick={() => handleAddToCart(item)}
+                    disabled={quantities[item.itemId] === 0 || addedItems[item.itemId]}
                   >
-                    Add to Cart
+                    {addedItems[item.itemId] ? 'Added' : 'Add to Cart'}
                   </button>
                 </div>
               </div>

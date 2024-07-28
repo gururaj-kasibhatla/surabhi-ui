@@ -17,6 +17,7 @@ function Login({ onLogin }) {
       const user = users.find(u => u.username === username && u.password === password);
       if (user) {
         onLogin(user);
+        localStorage.setItem('userId', user.userId); // Save user ID in local storage
         navigate(user.role === 'ADMIN' ? '/admin/manage-menu' : '/');
       } else {
         alert('Invalid credentials');
@@ -59,16 +60,13 @@ function Login({ onLogin }) {
                     required
                   />
                 </div>
-                <br/>
+                <br />
                 <button type="submit" className="btn btn-primary btn-block">
                   Login
                 </button>
               </form>
               <hr />
-              <button
-                className="btn btn-link"
-                onClick={handleRegister}
-              >
+              <button className="btn btn-link" onClick={handleRegister}>
                 Register
               </button>
             </div>

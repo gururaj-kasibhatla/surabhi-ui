@@ -62,7 +62,17 @@ const NavigationBar = ({ user, onLogout }) => {
                     </li>
                     <li className="nav-item">
                       <button className="nav-link btn btn-link" onClick={() => navigate('/admin/view-orders')}>
-                        View Orders
+                         Orders
+                      </button>
+                    </li>
+                    <li className="nav-item">
+                      <button className="nav-link btn btn-link" onClick={() => navigate('/admin/view-bills')}>
+                        Bills
+                      </button>
+                    </li>
+                    <li className="nav-item">
+                      <button className="nav-link btn btn-link" onClick={() => navigate('/admin/view-sales')}>
+                        Sales
                       </button>
                     </li>
                   </>

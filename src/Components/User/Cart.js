@@ -3,7 +3,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Cart({ cartItems }) {
+function Cart({ cartItems, userId }) {
   const navigate = useNavigate();
 
   const calculateTotal = (item) => {
@@ -13,7 +13,7 @@ function Cart({ cartItems }) {
   const grandTotal = cartItems.reduce((sum, item) => sum + calculateTotal(item), 0);
 
   const handleCheckout = () => {
-    navigate('/checkout');
+    navigate('/checkout', { state: { cartItems, total: grandTotal, userId } });
   };
 
   return (
